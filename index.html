@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>🐾 PawVibesZ — Cats on Zoom for Every Generation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Boogaloo&family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Fredoka+One&family=Abril+Fatface&family=Playfair+Display:ital,wght@1,700&family=VT323&family=Righteous&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --alpha:  #ff2d78;
+    --alpha2: #ff6fd8;
+    --genz:   #7c3aed;
+    --genz2:  #a78bfa;
+    --geny:   #f97316;
+    --geny2:  #fde68a;
+    --genx:   #0ea5e9;
+    --genx2:  #38bdf8;
+    --boom:   #16a34a;
+    --boom2:  #86efac;
+    --slnt:   #854d0e;
+    --slnt2:  #fcd34d;
+    --white:  #fffdf7;
+    --black:  #0d0d0d;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Space Mono', monospace;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ─────────────────────────────────────────── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem 1rem 4rem;
+    background: radial-gradient(ellipse at 20% 30%, #ff2d7855 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 70%, #7c3aed55 0%, transparent 60%),
+                radial-gradient(ellipse at 50% 50%, #f9731644 0%, transparent 70%),
+                #0d0d0d;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(255,255,255,.07) 1px, transparent 0);
+    background-size: 32px 32px;
+    pointer-events: none;
+  }
+
+  .hero-badge {
+    font-family: 'VT323', monospace;
+    font-size: 1.1rem;
+    letter-spacing: .25em;
+    background: linear-gradient(90deg, var(--alpha), var(--genz), var(--geny), var(--genx), var(--boom), var(--slnt2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1.5rem;
+    animation: gradshift 4s linear infinite;
+    background-size: 300%;
+  }
+
+  @keyframes gradshift {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .hero-paws {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+    animation: bounce 1.8s ease-in-out infinite;
+  }
+  @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3.5rem, 12vw, 9rem);
+    line-height: .9;
+    letter-spacing: .02em;
+    background: linear-gradient(135deg, #ff2d78, #ff6fd8, #a78bfa, #38bdf8, #86efac, #fcd34d);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-size: 300%;
+    animation: gradshift 6s linear infinite;
+    margin-bottom: .5rem;
+  }
+
+  .hero-sub {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(1.1rem, 3vw, 1.8rem);
+    color: #fffdf7cc;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-cta {
+    display: inline-block;
+    padding: .9rem 2.6rem;
+    border-radius: 60px;
+    background: linear-gradient(135deg, var(--alpha), var(--genz));
+    color: #fff;
+    text-decoration: none;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: .1em;
+    box-shadow: 0 0 32px #ff2d7877, 0 0 64px #7c3aed44;
+    transition: transform .2s, box-shadow .2s;
+    margin-bottom: 3rem;
+  }
+  .hero-cta:hover { transform: scale(1.05); box-shadow: 0 0 48px #ff2d78aa, 0 0 96px #7c3aed66; }
+
+  /* scrolling ticker */
+  .ticker-wrap {
+    width: 100%;
+    overflow: hidden;
+    padding: .6rem 0;
+    border-top: 2px solid rgba(255,255,255,.15);
+    border-bottom: 2px solid rgba(255,255,255,.15);
+    background: rgba(255,255,255,.04);
+  }
+  .ticker {
+    display: flex;
+    gap: 0;
+    animation: ticker 28s linear infinite;
+    white-space: nowrap;
+  }
+  .ticker span {
+    font-family: 'VT323', monospace;
+    font-size: 1.2rem;
+    letter-spacing: .12em;
+    padding: 0 2rem;
+  }
+  @keyframes ticker { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+
+  /* ── GENERATION CARDS ─────────────────────────────── */
+  .gens-section {
+    padding: 5rem 1rem 6rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2rem, 6vw, 4.5rem);
+    text-align: center;
+    letter-spacing: .05em;
+    margin-bottom: .5rem;
+  }
+  .section-sub {
+    text-align: center;
+    color: #fffdf799;
+    margin-bottom: 4rem;
+    font-size: .95rem;
+  }
+
+  .gen-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+  }
+
+  .gen-card {
+    border-radius: 24px;
+    padding: 0;
+    overflow: hidden;
+    position: relative;
+    transition: transform .3s, box-shadow .3s;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+  .gen-card:hover { transform: translateY(-8px) rotate(-0.5deg); }
+
+  .gen-card-inner {
+    padding: 2.2rem 2rem 2rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* per-gen colours */
+  .card-alpha  { background: linear-gradient(145deg, #ff2d78, #ff6fd8, #c026d3); box-shadow: 0 8px 40px #ff2d7866; }
+  .card-genz   { background: linear-gradient(145deg, #4c1d95, #7c3aed, #a78bfa); box-shadow: 0 8px 40px #7c3aed66; }
+  .card-geny   { background: linear-gradient(145deg, #c2410c, #f97316, #fbbf24); box-shadow: 0 8px 40px #f9731666; }
+  .card-genx   { background: linear-gradient(145deg, #0369a1, #0ea5e9, #7dd3fc); box-shadow: 0 8px 40px #0ea5e966; }
+  .card-boom   { background: linear-gradient(145deg, #166534, #16a34a, #86efac); box-shadow: 0 8px 40px #16a34a66; }
+  .card-slnt   { background: linear-gradient(145deg, #92400e, #d97706, #fcd34d); box-shadow: 0 8px 40px #d9770666; }
+
+  /* noise overlay */
+  .gen-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+    background-size: 200px;
+    opacity: .25;
+    pointer-events: none;
+    border-radius: 24px;
+  }
+
+  .gen-emoji { font-size: 3.2rem; line-height: 1; }
+
+  .gen-label {
+    font-family: 'VT323', monospace;
+    font-size: 1rem;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    opacity: .85;
+  }
+
+  .gen-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.8rem;
+    line-height: .95;
+    letter-spacing: .03em;
+    text-shadow: 0 2px 12px rgba(0,0,0,.35);
+  }
+
+  .gen-years {
+    font-family: 'Space Mono', monospace;
+    font-size: .78rem;
+    opacity: .8;
+    letter-spacing: .1em;
+  }
+
+  .gen-desc {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.05rem;
+    line-height: 1.5;
+    opacity: .92;
+    flex: 1;
+  }
+
+  .gen-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .4rem;
+    margin-top: .5rem;
+  }
+  .gen-tag {
+    background: rgba(255,255,255,.2);
+    border-radius: 30px;
+    padding: .25rem .75rem;
+    font-size: .75rem;
+    font-family: 'Space Mono', monospace;
+    letter-spacing: .05em;
+    backdrop-filter: blur(4px);
+  }
+
+  .gen-cta-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1rem;
+    border-top: 1px solid rgba(255,255,255,.25);
+    padding-top: 1rem;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: .08em;
+  }
+  .gen-cta-row span { opacity: .8; }
+  .gen-arrow {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.25);
+    display: grid; place-items: center;
+    font-size: 1.2rem;
+    transition: background .2s, transform .2s;
+  }
+  .gen-card:hover .gen-arrow { background: rgba(255,255,255,.45); transform: translateX(4px); }
+
+  /* ── FEATURES STRIP ───────────────────────────────── */
+  .features-strip {
+    padding: 4rem 1rem;
+    background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+    border-top: 2px solid rgba(255,255,255,.08);
+    border-bottom: 2px solid rgba(255,255,255,.08);
+  }
+  .features-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+    text-align: center;
+  }
+  .feature-item { display: flex; flex-direction: column; align-items: center; gap: .7rem; }
+  .feature-icon {
+    font-size: 2.5rem;
+    background: linear-gradient(135deg, #ff2d78, #7c3aed, #0ea5e9);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 12px #7c3aed88);
+  }
+  .feature-title { font-family: 'Fredoka One', cursive; font-size: 1.15rem; }
+  .feature-desc  { font-size: .8rem; color: #fffdf799; line-height: 1.5; }
+
+  /* ── STATS BAND ───────────────────────────────────── */
+  .stats-band {
+    padding: 4rem 1rem;
+    background: #0d0d0d;
+  }
+  .stats-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 3rem 4rem;
+  }
+  .stat-item { text-align: center; }
+  .stat-num {
+    font-family: 'Abril Fatface', cursive;
+    font-size: 3.5rem;
+    line-height: 1;
+    background: linear-gradient(135deg, #ff2d78, #fcd34d);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .stat-label { font-family: 'Space Mono', monospace; font-size: .78rem; color: #fffdf788; letter-spacing: .1em; margin-top: .3rem; }
+
+  /* ── OFFICIAL SITE CTA ────────────────────────────── */
+  .official-cta {
+    padding: 6rem 1rem;
+    text-align: center;
+    background: radial-gradient(ellipse at center, #7c3aed22 0%, transparent 70%), #0d0d0d;
+    position: relative;
+    overflow: hidden;
+  }
+  .official-cta::before {
+    content: '🐾';
+    position: absolute;
+    font-size: 18rem;
+    opacity: .04;
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    pointer-events: none;
+  }
+  .official-cta h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 8vw, 6rem);
+    letter-spacing: .04em;
+    line-height: .95;
+    margin-bottom: 1.2rem;
+  }
+  .official-cta p {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.3rem;
+    color: #fffdf7cc;
+    margin-bottom: 2.5rem;
+    max-width: 520px;
+    margin-left: auto; margin-right: auto;
+  }
+  .official-btn {
+    display: inline-block;
+    padding: 1.1rem 3.5rem;
+    border-radius: 60px;
+    background: linear-gradient(135deg, #ff2d78, #f97316, #fcd34d);
+    color: #0d0d0d;
+    text-decoration: none;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: .12em;
+    box-shadow: 0 0 40px #ff2d7877, 0 0 80px #f9731644;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .official-btn:hover { transform: scale(1.07); box-shadow: 0 0 60px #ff2d78aa, 0 0 120px #f97316aa; }
+
+  /* ── GEN SPOTLIGHT ────────────────────────────────── */
+  .spotlight {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 5rem 1rem;
+  }
+  .spotlight-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+  @media (max-width: 768px) { .spotlight-grid { grid-template-columns: 1fr; } }
+
+  .spotlight-text h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    letter-spacing: .03em;
+    margin-bottom: .8rem;
+  }
+  .spotlight-text p {
+    font-size: .9rem;
+    line-height: 1.7;
+    color: #fffdf7cc;
+    margin-bottom: 1rem;
+  }
+  .spotlight-cats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .cat-card {
+    border-radius: 18px;
+    padding: 1.4rem 1.2rem;
+    background: rgba(255,255,255,.05);
+    border: 1px solid rgba(255,255,255,.1);
+    transition: background .2s;
+    cursor: default;
+  }
+  .cat-card:hover { background: rgba(255,255,255,.1); }
+  .cat-avatar { font-size: 2rem; margin-bottom: .5rem; }
+  .cat-name { font-family: 'Fredoka One', cursive; font-size: 1.1rem; }
+  .cat-status { font-family: 'VT323', monospace; font-size: .9rem; color: #fffdf799; letter-spacing: .07em; }
+
+  /* ── FOOTER ───────────────────────────────────────── */
+  footer {
+    border-top: 1px solid rgba(255,255,255,.1);
+    padding: 2.5rem 1rem;
+    text-align: center;
+    background: #0a0a0a;
+  }
+  footer p {
+    font-family: 'Space Mono', monospace;
+    font-size: .75rem;
+    color: #fffdf766;
+    line-height: 1.8;
+  }
+  footer a { color: #ff6fd8; text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  /* ── ANIMATIONS ───────────────────────────────────── */
+  @keyframes floatcat {
+    0%,100%{transform:translateY(0) rotate(-3deg)} 50%{transform:translateY(-18px) rotate(3deg)}
+  }
+  .floatcat { animation: floatcat 4s ease-in-out infinite; display:inline-block; }
+
+  @keyframes pulse-glow {
+    0%,100%{filter:drop-shadow(0 0 8px currentColor)} 50%{filter:drop-shadow(0 0 24px currentColor)}
+  }
+
+  /* responsive */
+  @media (max-width: 600px) {
+    .gen-grid { grid-template-columns: 1fr; }
+    .stats-inner { gap: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════ HERO ══════ -->
+<section class="hero">
+  <div class="hero-badge">🐾 THE INTERNET'S MOST BELOVED CATS — FOR EVERY GENERATION 🐾</div>
+  <div class="hero-paws">🐱 😸 🐾 😻 🐈</div>
+  <h1>PAWVIBESZ</h1>
+  <p class="hero-sub">Cats on Zoom — curated for <em>every generation</em> on the planet 🌍</p>
+  <a href="https://paniaguai.github.io/pawz/" target="_blank" class="hero-cta">🐾 Visit the Official Site</a>
+  <div class="ticker-wrap">
+    <div class="ticker">
+      <span style="color:#ff6fd8">🐾 GEN ALPHA</span>
+      <span style="color:#a78bfa">✦ GEN Z</span>
+      <span style="color:#fbbf24">✦ MILLENNIALS</span>
+      <span style="color:#7dd3fc">✦ GEN X</span>
+      <span style="color:#86efac">✦ BOOMERS</span>
+      <span style="color:#fcd34d">✦ SILENT GEN</span>
+      <span style="color:#ff2d78">🐱 CATS ON ZOOM</span>
+      <span style="color:#c084fc">✦ PAWVIBESZ IS FOR EVERYONE</span>
+      <span style="color:#fdba74">✦ YOU'RE ON MUTE, THE CAT ISN'T</span>
+      <span style="color:#67e8f9">✦ PURRING ACROSS GENERATIONS</span>
+      <!-- dup for loop -->
+      <span style="color:#ff6fd8">🐾 GEN ALPHA</span>
+      <span style="color:#a78bfa">✦ GEN Z</span>
+      <span style="color:#fbbf24">✦ MILLENNIALS</span>
+      <span style="color:#7dd3fc">✦ GEN X</span>
+      <span style="color:#86efac">✦ BOOMERS</span>
+      <span style="color:#fcd34d">✦ SILENT GEN</span>
+      <span style="color:#ff2d78">🐱 CATS ON ZOOM</span>
+      <span style="color:#c084fc">✦ PAWVIBESZ IS FOR EVERYONE</span>
+      <span style="color:#fdba74">✦ YOU'RE ON MUTE, THE CAT ISN'T</span>
+      <span style="color:#67e8f9">✦ PURRING ACROSS GENERATIONS</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════ STATS ══════ -->
+<div class="stats-band">
+  <div class="stats-inner">
+    <div class="stat-item"><div class="stat-num">6</div><div class="stat-label">GENERATIONS COVERED</div></div>
+    <div class="stat-item"><div class="stat-num">70+</div><div class="stat-label">REAL CATS WORLDWIDE</div></div>
+    <div class="stat-item"><div class="stat-num">20+</div><div class="stat-label">COUNTRIES PURRING</div></div>
+    <div class="stat-item"><div class="stat-num">∞</div><div class="stat-label">VIBES UNLOCKED</div></div>
+    <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">NO CAP, FELINE</div></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════ GEN CARDS ══════ -->
+<section class="gens-section">
+  <h2 class="section-title" style="background:linear-gradient(135deg,#ff2d78,#a78bfa,#38bdf8,#86efac,#fcd34d);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">FIND YOUR GENERATION</h2>
+  <p class="section-sub">Six generations. One community. Infinite cats.</p>
+
+  <div class="gen-grid">
+
+    <!-- Gen Alpha -->
+    <a class="gen-card card-alpha" href="https://paniaguai.github.io/alph/" target="_blank">
+      <div class="gen-card-inner">
+        <div class="gen-emoji">🧒</div>
+        <div class="gen-label">BORN 2010–2024</div>
+        <div class="gen-name">GENERATION<br>ALPHA</div>
+        <div class="gen-years">// The iPad Kids · Born Digital · 2B+ Worldwide</div>
+        <p class="gen-desc">The first generation born entirely in the 21st century. Never knew a world without smartphones. AI besties, Roblox logic, and cats on Zoom? That's just Tuesday.</p>
+        <div class="gen-tags">
+          <span class="gen-tag">📱 iPad Kids</span>
+          <span class="gen-tag">🤖 AI Natives</span>
+          <span class="gen-tag">🎮 Gaming Culture</span>
+          <span class="gen-tag">🔥 No Cap</span>
+          <span class="gen-tag">😸 Main Character</span>
+        </div>
+        <div class="gen-cta-row"><span>EXPLORE GEN ALPHA VIBES →</span><div class="gen-arrow">→</div></div>
+      </div>
+    </a>
+
+    <!-- Gen Z -->
+    <a class="gen-card card-genz" href="https://paniaguai.github.io/genz/" target="_blank">
+      <div class="gen-card-inner">
+        <div class="gen-emoji">🫶</div>
+        <div class="gen-label">BORN 1997–2012</div>
+        <div class="gen-name">GENERATION<br>Z</div>
+        <div class="gen-years">// Zoomers · First Smartphone Generation · 2B+ Worldwide</div>
+        <p class="gen-desc">Multitasking across seventeen tabs with a cat judging them on Zoom. Digital natives, mental health aware, politically active — screen time hits different when there's a cat in the meeting.</p>
+        <div class="gen-tags">
+          <span class="gen-tag">💅 Digital Native</span>
+          <span class="gen-tag">🧠 Mental Health</span>
+          <span class="gen-tag">🌍 Political</span>
+          <span class="gen-tag">🎮 Streamer Culture</span>
+          <span class="gen-tag">🌀 Nostalgia Coded</span>
+        </div>
+        <div class="gen-cta-row"><span>JOIN THE ZOOMERS →</span><div class="gen-arrow">→</div></div>
+      </div>
+    </a>
+
+    <!-- Millennials -->
+    <a class="gen-card card-geny" href="https://paniaguai.github.io/geny/" target="_blank">
+      <div class="gen-card-inner">
+        <div class="gen-emoji">💯</div>
+        <div class="gen-label">BORN 1981–1996</div>
+        <div class="gen-name">MILLENNIALS<br>/ GEN Y</div>
+        <div class="gen-years">// Net Generation · Echo Boomers · 72M in the US</div>
+        <p class="gen-desc">Grew up on AIM and MySpace, survived two recessions, pioneered internet culture. Now they just want to share their cats on Zoom calls without judgment. Welcome home.</p>
+        <div class="gen-tags">
+          <span class="gen-tag">🖥️ AIM Era</span>
+          <span class="gen-tag">🏠 Remote Life</span>
+          <span class="gen-tag">😻 Cat Parents</span>
+          <span class="gen-tag">📱 Social Pioneers</span>
+          <span class="gen-tag">☕ Avocado Toast</span>
+        </div>
+        <div class="gen-cta-row"><span>GET THAT MILLENNIAL VIBE →</span><div class="gen-arrow">→</div></div>
+      </div>
+    </a>
+
+    <!-- Gen X -->
+    <a class="gen-card card-genx" href="https://paniaguai.github.io/genx/" target="_blank">
+      <div class="gen-card-inner">
+        <div class="gen-emoji">❤️</div>
+        <div class="gen-label">BORN 1965–1980</div>
+        <div class="gen-name">GENERATION<br>X</div>
+        <div class="gen-years">// Latchkey Kids · MTV Generation · 65M in the US</div>
+        <p class="gen-desc">You survived the 80s. Home alone after school, MTV on in the background. No algorithm, no fluff — just a real cat, purring, in real time. Exactly the no-bullshit calm Gen X always deserved.</p>
+        <div class="gen-tags">
+          <span class="gen-tag">📼 MTV Era</span>
+          <span class="gen-tag">🔑 Latchkey Kids</span>
+          <span class="gen-tag">⚡ Independent</span>
+          <span class="gen-tag">😒 No Fluff</span>
+          <span class="gen-tag">🐱 Real Cats Only</span>
+        </div>
+        <div class="gen-cta-row"><span>NO BULLSHIT → JUST CATS</span><div class="gen-arrow">→</div></div>
+      </div>
+    </a>
+
+    <!-- Boomers -->
+    <a class="gen-card card-boom" href="https://paniaguai.github.io/boom/" target="_blank">
+      <div class="gen-card-inner">
+        <div class="gen-emoji">👶</div>
+        <div class="gen-label">BORN 1946–1964</div>
+        <div class="gen-name">BABY<br>BOOMERS</div>
+        <div class="gen-years">// Woodstock Generation · Post-War Optimists · 74M in the US</div>
+        <p class="gen-desc">You invented cool — and cool never retires. Woodstock, Moon landings, rock 'n' roll, and now: cats on Zoom. Your generation changed everything. PawVibesZ is just the next chapter.</p>
+        <div class="gen-tags">
+          <span class="gen-tag">🎶 Rock Era</span>
+          <span class="gen-tag">🚀 Space Age</span>
+          <span class="gen-tag">✊ Civil Rights</span>
+          <span class="gen-tag">🌺 Woodstock</span>
+          <span class="gen-tag">😸 Cat Lovers</span>
+        </div>
+        <div class="gen-cta-row"><span>STILL PURRING STRONG →</span><div class="gen-arrow">→</div></div>
+      </div>
+    </a>
+
+    <!-- Silent Generation -->
+    <a class="gen-card card-slnt" href="https://paniaguai.github.io/slnt/" target="_blank">
+      <div class="gen-card-inner">
+        <div class="gen-emoji">🧑‍🦳</div>
+        <div class="gen-label">BORN 1928–1945</div>
+        <div class="gen-name">SILENT<br>GENERATION</div>
+        <div class="gen-years">// The Builders · The Traditionalists · Civil Rights Champions</div>
+        <p class="gen-desc">You built the world we live in. Survived the Depression, WWII, and postwar austerity. Danced to the first rock and roll. Now there's a new joy waiting — furry, purring, and just one Zoom click away.</p>
+        <div class="gen-tags">
+          <span class="gen-tag">💪 The Builders</span>
+          <span class="gen-tag">📻 Radio Days</span>
+          <span class="gen-tag">🎸 Rock Origins</span>
+          <span class="gen-tag">✊ Rights Leaders</span>
+          <span class="gen-tag">🌟 Resilient</span>
+        </div>
+        <div class="gen-cta-row"><span>HONOUR THE BUILDERS →</span><div class="gen-arrow">→</div></div>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════ FEATURES ══════ -->
+<section class="features-strip">
+  <div class="features-inner">
+    <div class="feature-item">
+      <div class="feature-icon">🐱</div>
+      <div class="feature-title">Real Cats, Real Time</div>
+      <div class="feature-desc">Live Zoom sessions with real, genuine cats from around the world. No filters. No scripts. Pure paw energy.</div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">🌍</div>
+      <div class="feature-title">20+ Countries</div>
+      <div class="feature-desc">Cats everywhere, for everyone. PawVibesZ has 70+ feline hosts spread across the globe — truly international vibes.</div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">🧠</div>
+      <div class="feature-title">Science-Backed Joy</div>
+      <div class="feature-desc">Pet interaction reduces cortisol, lowers anxiety, and boosts mood. PawVibesZ is basically therapy — with fur.</div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">🎯</div>
+      <div class="feature-title">Gen-Curated Content</div>
+      <div class="feature-desc">Every generation gets its own tailored Zoom cat experience — from Gen Alpha chaos to Silent Gen serenity.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════ CAT SPOTLIGHT ══════ -->
+<section class="spotlight">
+  <h2 class="section-title" style="background:linear-gradient(135deg,#ff2d78,#fcd34d);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-align:center;margin-bottom:3rem;">MEET THE CATS</h2>
+  <div class="spotlight-grid">
+    <div class="spotlight-text">
+      <h3 style="background:linear-gradient(135deg,#ff6fd8,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">YOUR NEW FAVORITE CO-WORKERS 🐾</h3>
+      <p>These are the original internet influencers — whiskers before cameras, paws before keyboards. Each cat in the PawVibesZ roster brings its own personality, energy, and total disregard for meeting agendas.</p>
+      <p>Whether they're walking across the keyboard during a board presentation or demanding snacks mid-standup — they are the content. They always have been.</p>
+      <a href="https://paniaguai.github.io/pawz/" target="_blank" style="display:inline-block;margin-top:1rem;padding:.7rem 1.8rem;background:linear-gradient(135deg,#ff2d78,#7c3aed);border-radius:30px;color:#fff;text-decoration:none;font-family:'Bebas Neue',sans-serif;letter-spacing:.1em;font-size:1.1rem;">🐱 MEET THEM ALL</a>
+    </div>
+    <div class="spotlight-cats">
+      <div class="cat-card">
+        <div class="cat-avatar">🐱</div>
+        <div class="cat-name">Matcha</div>
+        <div class="cat-status">"is this thing on?" · #unmuted</div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-avatar">😸</div>
+        <div class="cat-name">Boba</div>
+        <div class="cat-status">"camera on, judging u" · #main character</div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-avatar">🐈</div>
+        <div class="cat-name">Mochi</div>
+        <div class="cat-status">"walked across keyboard" · #chaos agent</div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-avatar">😻</div>
+        <div class="cat-name">Latte</div>
+        <div class="cat-status">"sent u a pawprint" · #wholesome</div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-avatar">😾</div>
+        <div class="cat-name">Yuzu</div>
+        <div class="cat-status">"log me off rn" · #do not disturb</div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-avatar">🙀</div>
+        <div class="cat-name">Soba</div>
+        <div class="cat-status">"someone said snack?" · #hyperactive</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════ OFFICIAL CTA ══════ -->
+<section class="official-cta">
+  <h2>
+    <span style="background:linear-gradient(135deg,#ff2d78,#f97316,#fcd34d);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">ONE SITE.</span><br>
+    <span style="background:linear-gradient(135deg,#7c3aed,#0ea5e9,#86efac);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">ALL THE CATS.</span>
+  </h2>
+  <p>The official PawVibesZ hub — where every generation finds their feline frequency. Live sessions, real cats, and vibes that transcend time.</p>
+  <a href="https://paniaguai.github.io/pawz/" target="_blank" class="official-btn">🐾 VISIT PAWVIBESZ OFFICIAL</a>
+</section>
+
+<!-- ══════════════════════════════════ GEN QUICK-NAV ══════ -->
+<section style="background:#111;padding:3rem 1rem;border-top:1px solid rgba(255,255,255,.07);">
+  <div style="max-width:900px;margin:0 auto;text-align:center;">
+    <p style="font-family:'VT323',monospace;font-size:1rem;letter-spacing:.25em;color:#fffdf766;margin-bottom:1.5rem;">QUICK JUMP TO YOUR GENERATION</p>
+    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:.8rem;">
+      <a href="https://paniaguai.github.io/alph/" target="_blank" style="padding:.6rem 1.5rem;border-radius:30px;background:linear-gradient(135deg,#ff2d78,#ff6fd8);color:#fff;text-decoration:none;font-family:'Bebas Neue',sans-serif;letter-spacing:.1em;font-size:1rem;">🧒 Gen Alpha</a>
+      <a href="https://paniaguai.github.io/genz/" target="_blank" style="padding:.6rem 1.5rem;border-radius:30px;background:linear-gradient(135deg,#4c1d95,#a78bfa);color:#fff;text-decoration:none;font-family:'Bebas Neue',sans-serif;letter-spacing:.1em;font-size:1rem;">🫶 Gen Z</a>
+      <a href="https://paniaguai.github.io/geny/" target="_blank" style="padding:.6rem 1.5rem;border-radius:30px;background:linear-gradient(135deg,#c2410c,#fbbf24);color:#fff;text-decoration:none;font-family:'Bebas Neue',sans-serif;letter-spacing:.1em;font-size:1rem;">💯 Millennials</a>
+      <a href="https://paniaguai.github.io/genx/" target="_blank" style="padding:.6rem 1.5rem;border-radius:30px;background:linear-gradient(135deg,#0369a1,#7dd3fc);color:#fff;text-decoration:none;font-family:'Bebas Neue',sans-serif;letter-spacing:.1em;font-size:1rem;">❤️ Gen X</a>
+      <a href="https://paniaguai.github.io/boom/" target="_blank" style="padding:.6rem 1.5rem;border-radius:30px;background:linear-gradient(135deg,#166534,#86efac);color:#fff;text-decoration:none;font-family:'Bebas Neue',sans-serif;letter-spacing:.1em;font-size:1rem;">👶 Boomers</a>
+      <a href="https://paniaguai.github.io/slnt/" target="_blank" style="padding:.6rem 1.5rem;border-radius:30px;background:linear-gradient(135deg,#92400e,#fcd34d);color:#fff;text-decoration:none;font-family:'Bebas Neue',sans-serif;letter-spacing:.1em;font-size:1rem;">🧑‍🦳 Silent Gen</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════ FOOTER ══════ -->
+<footer>
+  <p>🐾 <strong>PawVibesZ</strong> — Cats on Zoom for Every Generation</p>
+  <p>
+    <a href="https://paniaguai.github.io/pawz/" target="_blank">Official Site</a> ·
+    <a href="https://paniaguai.github.io/alph/" target="_blank">Gen Alpha</a> ·
+    <a href="https://paniaguai.github.io/genz/" target="_blank">Gen Z</a> ·
+    <a href="https://paniaguai.github.io/geny/" target="_blank">Millennials</a> ·
+    <a href="https://paniaguai.github.io/genx/" target="_blank">Gen X</a> ·
+    <a href="https://paniaguai.github.io/boom/" target="_blank">Boomers</a> ·
+    <a href="https://paniaguai.github.io/slnt/" target="_blank">Silent Gen</a>
+  </p>
+  <p style="margin-top:.8rem;">Made with 🐾 and a lot of Zoom calls · No cats were interrupted during production</p>
+</footer>
+
+</body>
+</html>
